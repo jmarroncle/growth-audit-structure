@@ -28,6 +28,14 @@ Ver [`docs/explanation/arquitectura.md`](docs/explanation/arquitectura.md) para 
 URL + objetivo → Capa de datos (3 niveles de confiabilidad) → Generación de candidatos (6 familias) → Selección/Ranking → Render según instancia
 ```
 
+## 🖼️ UI del producto (mockup)
+
+**[Ver el mockup navegable →](https://claude.ai/code/artifact/c7bcb0a8-c527-4244-9dc2-d4e8ac019394)**
+
+Las 5 pantallas de la Instancia Inbound — landing, formulario, procesando, resultados e insight expandido — con datos de ejemplo (la misma auditoría de `nortia.io` del tutorial). Todavía no hay UI construida en este proyecto; esto es el mockup de referencia para diseñarla.
+
+> Es un link privado (Claude Artifact) — compartilo desde el menú de share de esa página si Cristopher necesita verlo sin tu cuenta.
+
 ## Documentación
 
 La documentación de producto está organizada con **Diátaxis** — un framework que separa los documentos en 4 tipos según lo que el lector necesita en ese momento: aprender haciendo, resolver una tarea puntual, consultar un dato exacto, o entender el porqué de una decisión.
