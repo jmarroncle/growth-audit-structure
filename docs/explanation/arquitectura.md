@@ -105,4 +105,4 @@ El resultado final no son 5 variaciones del mismo problema, sino un panorama de 
 
 ## Qué hace el sistema con el resultado
 
-El pipeline termina generando una auditoría y entregándola — nada más. No arma mensajes de cold reach, no decide un canal comercial, no elige a quién más contactar. Lo que Cristopher haga después con una auditoría ya entregada (usarla como excusa para un mensaje en frío, profundizarla en una llamada) es su propio proceso comercial, fuera de este sistema — ver la [nota de archivo](../../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el porqué de este límite.
+El pipeline termina generando una auditoría y entregándola — ver la [nota de archivo](../../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el porqué de este límite.
