@@ -105,4 +105,4 @@ El resultado final no son 5 variaciones del mismo problema, sino un panorama de 
 
 ## Qué hace el sistema con el resultado
 
-El pipeline termina generando una auditoría y entregándola — ver la [nota de archivo](../../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el porqué de este límite.
+El pipeline termina generando una auditoría y entregándola — ver la [nota de archivo](../../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para ver V1.
