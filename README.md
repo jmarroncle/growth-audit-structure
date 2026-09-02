@@ -24,6 +24,7 @@ URL + objetivo → Capa de datos (3 niveles de confiabilidad) → Generación de
 
 ## Documentación
 
+- [`docs/brief-original.md`](docs/brief-original.md) — el requerimiento original de Cristopher, transcripto tal cual
 - [`docs/architecture.md`](docs/architecture.md) — arquitectura del motor y diagrama de flujo
 - [`docs/insight-schema.md`](docs/insight-schema.md) — el objeto "insight": campos, niveles de evidencia, ejemplo genérico vs. bueno
 - [`docs/stack.md`](docs/stack.md) — herramientas evaluadas por función (cuentas y suscripciones a cargo del cliente)
