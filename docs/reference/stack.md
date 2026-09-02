@@ -12,7 +12,7 @@ Todas las cuentas y suscripciones corren a cargo de Cristopher. Este documento r
 | Test de AEO (presencia en respuestas de LLMs en vivo) | API de Perplexity (Sonar), armado a medida | USD 1–5 | Otterly.ai (desde USD 29/mes) | Uso puntual por audit, no monitoreo continuo |
 | Búsqueda web con fuente y fecha (funding, headcount, founders) | SerpAPI (plan gratis) / Exa (pago por uso) | USD 0–7 | SerpAPI de pago (USD 25/mes) | Alcanza de sobra para el volumen inicial |
 | Lectura de sitio propio y de competidores | Firecrawl (cuenta propia de Cristopher) | USD 0–16 | ScrapingBee (desde USD 49/mes) | Más barato y ya evaluado desde el arranque |
-| Hosting del frontend estático (landing, formulario, resultados) | Vercel Hobby | USD 0 | GitHub Pages | Cualquiera de las dos es gratis para este uso; Vercel es más simple si más adelante hace falta un dominio propio |
+| Hosting del frontend estático (landing, formulario, resultados) | Vercel Hobby | USD 0 | GitHub Pages | Decidido: Vercel — más simple si más adelante hace falta un dominio propio |
 | **Total estimado** | | **≈ USD 61–118/mes** | | |
 
 > El rango depende directamente de cuántos audits se corran por mes — es un costo variable que crece con el uso del producto, no una suscripción fija. La estimación asume un volumen inicial bajo-moderado (del orden de decenas a ~100 audits/mes combinando las 3 instancias). **Este costo es aparte y no forma parte del fee de implementación** — es lo que le cuesta a Cristopher operar su propia solución una vez construida.

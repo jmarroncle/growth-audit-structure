@@ -6,7 +6,7 @@ Todo el pipeline se orquesta y vive dentro de **n8n** (la herramienta de automat
 
 ```mermaid
 flowchart TD
-    FE[Frontend estático<br/>Landing + Formulario + Resultados<br/>Vercel Hobby / GitHub Pages]
+    FE[Frontend estático<br/>Landing + Formulario + Resultados<br/>Vercel Hobby]
 
     subgraph N8N [n8n - orquestación completa del pipeline]
         direction TB
@@ -55,7 +55,7 @@ flowchart TD
 
 ## Dónde vive la interfaz (el frontend)
 
-Todo lo anterior es lógica — no tiene pantallas. La landing, el formulario y la pantalla de resultados (ver el [mockup navegable](../../README.md#%EF%B8%8F-ui-del-producto-mockup)) son un **frontend estático liviano**, hosteado aparte de n8n (Vercel Hobby o GitHub Pages, ambos gratis — ver [`reference/stack.md`](../reference/stack.md)) porque construir una interfaz con varias pantallas y estado visual como texto HTML dentro de un nodo de n8n es incómodo de mantener y versionar.
+Todo lo anterior es lógica — no tiene pantallas. La landing, el formulario y la pantalla de resultados (ver el [mockup navegable](../../README.md#%EF%B8%8F-ui-del-producto-mockup)) son un **frontend estático liviano**, hosteado aparte de n8n en **Vercel Hobby** (gratis — ver [`reference/stack.md`](../reference/stack.md)) porque construir una interfaz con varias pantallas y estado visual como texto HTML dentro de un nodo de n8n es incómodo de mantener y versionar.
 
 El frontend nunca tiene lógica propia — es una cara visible sobre n8n:
 
