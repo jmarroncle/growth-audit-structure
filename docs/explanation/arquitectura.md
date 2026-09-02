@@ -6,11 +6,13 @@ Todo el pipeline se orquesta y vive dentro de **n8n** (la herramienta de automat
 
 ```mermaid
 flowchart TD
+    FE[Frontend estático<br/>Landing + Formulario + Resultados<br/>Vercel Hobby / GitHub Pages]
+
     subgraph N8N [n8n - orquestación completa del pipeline]
         direction TB
 
         subgraph Triggers [Triggers de entrada]
-            T1[Webhook: formulario inbound]
+            T1[Webhook POST: envío del formulario]
             T2[Trigger manual / cron: cold reach]
             T3[Webhook: CRM - llamada finalizada]
         end
@@ -38,16 +40,35 @@ flowchart TD
         E --> E1[Cold Reach<br/>1 solo hook]
         E --> E2[Follow-up post-call<br/>mini pre-SOW]
         E --> E3[Inbound self-serve<br/>4-5 insights completos]
+
+        E3 --> R[Webhook GET: consulta de resultados<br/>por token]
     end
 
+    FE -- "1. POST al enviar el formulario" --> T1
     E1 --> O1[Nodo salida:<br/>mensaje para SDR/LinkedIn]
     E2 --> O2[Nodo salida:<br/>doc o email de follow-up]
-    E3 --> O3[Nodo salida:<br/>email al prospecto<br/>+ registro en Sheets/CRM]
+    E3 --> O4[Nodo salida:<br/>email al prospecto con link<br/>+ registro en Sheets/CRM]
+    O4 -. "2. mail con link a /resultados/:token" .-> FE
+    FE -- "3. GET al abrir el link" --> R
+    R -- "4. devuelve el JSON del audit" --> FE
 ```
+
+## Dónde vive la interfaz (el frontend)
+
+Todo lo anterior es lógica — no tiene pantallas. La landing, el formulario y la pantalla de resultados (ver el [mockup navegable](../../README.md#%EF%B8%8F-ui-del-producto-mockup)) son un **frontend estático liviano**, hosteado aparte de n8n (Vercel Hobby o GitHub Pages, ambos gratis — ver [`reference/stack.md`](../reference/stack.md)) porque construir una interfaz con varias pantallas y estado visual como texto HTML dentro de un nodo de n8n es incómodo de mantener y versionar.
+
+El frontend nunca tiene lógica propia — es una cara visible sobre n8n:
+
+1. El formulario hace un **POST** al webhook de n8n cuando el prospecto lo envía, y muestra la pantalla de "procesando" de forma optimista (no espera en vivo a que termine el pipeline completo).
+2. Cuando el audit termina, n8n manda el mail con un link a `/resultados/:token`.
+3. Esa pantalla de resultados hace un **GET** a un segundo webhook de n8n con ese token.
+4. n8n devuelve el JSON del audit (los insights ya generados y seleccionados) y el frontend lo renderiza como las tarjetas del mockup.
+
+Esto mantiene toda la lógica y el estado en un solo lugar (n8n), y el frontend queda desechable — se puede rediseñar la UI sin tocar el pipeline, porque solo consume dos endpoints.
 
 ## Por qué n8n como capa de orquestación, y no un backend a medida
 
-El plan original contemplaba un backend propio (hosteado en algo como Vercel o Railway) para conectar el formulario con el motor. Como Cristopher va a operar todo el proyecto sobre n8n, ese rol lo cumple n8n directamente: sus triggers (webhook, cron, o disparado desde el CRM) reemplazan al backend custom, sus nodos HTTP Request llaman a cada fuente de datos de la capa de evidencia, y sus nodos de IA generan y seleccionan los insights. Esto simplifica el proyecto — una sola herramienta para operar, monitorear y debuggear el pipeline completo, en vez de un backend separado que además de mantenerse necesitaría su propio hosting.
+El plan original contemplaba un backend propio (hosteado en algo como Vercel o Railway) para conectar el formulario con el motor. Como Cristopher va a operar todo el proyecto sobre n8n, ese rol lo cumple n8n directamente: sus triggers (webhook, cron, o disparado desde el CRM) reemplazan al backend custom, sus nodos HTTP Request llaman a cada fuente de datos de la capa de evidencia, y sus nodos de IA generan y seleccionan los insights. Esto simplifica el proyecto — una sola herramienta para operar, monitorear y debuggear la lógica completa. Lo único que queda fuera de n8n es el frontend estático descrito arriba, porque es una interfaz visual, no lógica de negocio.
 
 ## Por qué 3 niveles de datos y no uno solo
 

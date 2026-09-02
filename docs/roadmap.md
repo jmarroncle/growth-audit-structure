@@ -20,7 +20,10 @@ Captura del objetivo "locked" de la conversación + renderer más profundo, refe
 
 ## Fase 4 — Instancia Inbound + Web self-serve
 
-Formulario de onboarding que captura el objetivo, gateado con mail · landing donde el prospecto ingresa su URL · workflow de n8n que conecta el webhook del formulario → motor → output → envío por mail y registro en Sheets/CRM (ver [`explanation/arquitectura.md`](explanation/arquitectura.md)) · diseño del output final.
+Dos piezas que se construyen en paralelo (ver [`explanation/arquitectura.md`](explanation/arquitectura.md#dónde-vive-la-interfaz-el-frontend) para el detalle de cómo se conectan):
+
+- **Frontend estático** (landing, formulario, pantalla de resultados e insight expandido — ver el [mockup navegable](../README.md#%EF%B8%8F-ui-del-producto-mockup)), hosteado en Vercel Hobby o GitHub Pages. Sin lógica propia: postea al webhook de n8n al enviar el formulario, y consulta otro webhook por token para traer el resultado.
+- **Workflow de n8n** que recibe el POST del formulario, corre el motor, envía el mail con el link a resultados, registra en Sheets/CRM, y expone el webhook GET que el frontend consulta para renderizar las tarjetas.
 
 Esta es la fase más cara de construir y la que menos tolera un insight flojo — por eso va después de validar el motor, no antes.
 
