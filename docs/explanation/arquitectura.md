@@ -2,7 +2,7 @@
 
 ## El flujo completo
 
-Todo el pipeline se orquesta y vive dentro de **n8n** (la herramienta de automatización con la que Cristopher va a operar el proyecto) — no hay un backend separado. n8n recibe el trigger, llama a cada fuente de datos con nodos HTTP Request, llama al modelo para generar y seleccionar los insights, y entrega el resultado por el canal que corresponda a cada instancia.
+Todo el pipeline se orquesta y vive dentro de **n8n** (la herramienta de automatización con la que Cristopher va a operar el proyecto) — no hay un backend separado. Este diagrama muestra cada nodo real, no una categoría genérica: qué herramienta consulta cada llamada, y cuáles pasos son un **agente de IA** razonando (color distinto) contra un nodo de código determinístico o una llamada HTTP simple.
 
 ```mermaid
 flowchart TD
@@ -17,26 +17,40 @@ flowchart TD
             T3[Webhook: CRM - llamada finalizada]
         end
 
-        T1 --> IN[URL + objetivo]
-        T2 --> IN
+        T2 --> OBJ["🧠 Agente: infiere el objetivo<br/>del contexto (solo cold reach)"]
+        OBJ --> IN[URL + objetivo]
+        T1 --> IN
         T3 --> IN
 
-        IN --> B1
+        IN --> PS
+        IN --> ST
+        IN --> AEO
+        IN --> TXT
+        IN --> WEB
+        IN --> SEO
 
-        subgraph CapaDatos [Nodos HTTP Request - Capa de datos]
-            B1[Barato y confiable<br/>PageSpeed, stack tecnológico,<br/>test de AEO, análisis de texto/diseño]
-            B2[Recuperable<br/>Búsqueda web con fuente y fecha<br/>funding, headcount, posts de founders]
-            B3[Difícil / riesgoso<br/>SEO real vía DataForSEO/Ahrefs]
+        subgraph CapaDatos [Nodos HTTP Request - capa de datos]
+            PS["📊 PageSpeed Insights<br/>Core Web Vitals"]
+            ST["🔧 Nodo Code: detección de stack<br/>(HTML + firmas conocidas)"]
+            AEO["🤖 Perplexity API (Sonar)<br/>test de AEO"]
+            TXT["📝 Firecrawl<br/>texto/diseño propio y competidores"]
+            WEB["🔍 SerpAPI / Exa<br/>búsqueda web con fuente y fecha"]
+            SEO["📈 DataForSEO<br/>rankings reales"]
         end
 
-        B1 --> C
-        B2 --> C
-        B3 --> C
+        PS --> GEN
+        ST --> GEN
+        AEO --> GEN
+        TXT --> GEN
+        WEB --> GEN
+        SEO --> GEN
 
-        C[Nodo AI: genera candidatos<br/>en las 6 familias] --> D["Nodo AI/Code: función de selección<br/>(evidencia, relevancia, distancia de lo<br/>genérico, accionabilidad, riesgo de insulto)"]
-        D --> D1[Colapsa hallazgos relacionados<br/>+ fuerza diversidad de familias]
+        GEN["🧠 Agente generador de candidatos<br/>(Claude Sonnet 4.6) — 6 familias"] --> SEL
 
-        D1 --> E{Nodo Switch: instancia}
+        SEL["🧠 Agente selector (Claude)<br/>evidencia, relevancia, distancia de lo<br/>genérico, accionabilidad, riesgo de insulto"] --> COL
+
+        COL["⚙️ Nodo Code: colapsa hallazgos<br/>+ fuerza diversidad de familias"] --> E{Nodo Switch: instancia}
+
         E --> E1[Cold Reach<br/>1 solo hook]
         E --> E2[Follow-up post-call<br/>mini pre-SOW]
         E --> E3[Inbound self-serve<br/>4-5 insights completos]
@@ -44,14 +58,35 @@ flowchart TD
         E3 --> R[Webhook GET: consulta de resultados<br/>por token]
     end
 
-    FE -- "1. POST al enviar el formulario" --> T1
+    FE -- "① POST al enviar el formulario" --> T1
     E1 --> O1[Nodo salida:<br/>mensaje para SDR/LinkedIn]
     E2 --> O2[Nodo salida:<br/>doc o email de follow-up]
     E3 --> O4[Nodo salida:<br/>email al prospecto con link<br/>+ registro en Sheets/CRM]
-    O4 -. "2. mail con link a /resultados/:token" .-> FE
-    FE -- "3. GET al abrir el link" --> R
-    R -- "4. devuelve el JSON del audit" --> FE
+    O4 -. "② mail con link a /resultados/:token" .-> FE
+    FE -- "③ GET al abrir el link" --> R
+    R -- "④ devuelve el JSON del audit" --> FE
+
+    classDef trigger fill:#eef0ec,stroke:#9aa39c,color:#1a1d1f;
+    classDef tool fill:#e3e8ec,stroke:#3a6c8a,color:#1a1d1f,stroke-width:2px;
+    classDef agente fill:#dcece9,stroke:#1f6b66,color:#1a1d1f,stroke-width:2px;
+    classDef code fill:#eaece7,stroke:#5c6360,color:#1a1d1f;
+    classDef frontend fill:#e6e2f2,stroke:#6c5f9e,color:#1a1d1f,stroke-width:2px;
+
+    class T1,T2,T3,IN trigger
+    class PS,AEO,TXT,WEB,SEO tool
+    class ST,COL code
+    class OBJ,GEN,SEL agente
+    class FE frontend
 ```
+
+| Color | Qué significa |
+|---|---|
+| 🟩 Verde azulado | **Agente de IA** (Claude) razonando — infiere el objetivo, genera candidatos, o rankea por criterio subjetivo |
+| 🟦 Azul | **Llamada a una herramienta externa** — HTTP Request a una API (PageSpeed, Perplexity, Firecrawl, SerpAPI/Exa, DataForSEO) |
+| ⬜ Gris | **Nodo de código determinístico** — sin IA: parsear HTML, colapsar hallazgos, forzar diversidad |
+| 🟪 Violeta | El frontend estático, fuera de n8n |
+
+**①②③④** son el mismo ciclo de ida y vuelta con el frontend que ya vimos: envío del formulario, mail con el link, consulta de resultados y la respuesta con el JSON del audit.
 
 ## Dónde vive la interfaz (el frontend)
 
@@ -76,15 +111,12 @@ El brief original de Cristopher marca un problema concreto de este tipo de herra
 
 ## Por qué existe una función de selección, y no se muestran todos los candidatos
 
-El motor genera muchos candidatos de insight por auditoría. La mayoría son ruido: repiten el mismo hallazgo con otras palabras, son demasiado genéricos, o — en cold reach — son ciertos pero suficientemente humillantes como para cerrar la conversación antes de que empiece. La función de selección existe para hacer ese descarte antes de que el destinatario lo vea, priorizando por:
+El motor genera muchos candidatos de insight por auditoría. La mayoría son ruido: repiten el mismo hallazgo con otras palabras, son demasiado genéricos, o — en cold reach — son ciertos pero suficientemente humillantes como para cerrar la conversación antes de que empiece. Por eso la "función de selección" en realidad son dos nodos distintos, no uno:
 
-- fuerza de la evidencia que lo respalda,
-- relevancia al objetivo inferido o declarado,
-- qué tan lejos está de un consejo genérico aplicable a cualquier sitio,
-- si es accionable a través del sitio web,
-- y, solo en cold reach, el riesgo de insultar.
+- **El agente selector (nodo `SEL`)** — un llamado más a Claude, que rankea cada candidato por criterios que requieren juicio: fuerza de la evidencia que lo respalda, relevancia al objetivo inferido o declarado, qué tan lejos está de un consejo genérico aplicable a cualquier sitio, si es accionable a través del sitio web, y — solo en cold reach — el riesgo de insultar. Es un agente y no código porque estos criterios son subjetivos, no una fórmula.
+- **El nodo de código (`COL`)** — determinístico, sin IA: colapsa los hallazgos relacionados en una sola tesis (para no repetir el mismo punto dos veces con distinta evidencia) y fuerza que los insights finales toquen familias distintas entre sí. Esto sí es una regla mecánica, así que no hace falta gastar una llamada a un LLM en resolverla.
 
-Después de rankear, se colapsan los hallazgos relacionados en una sola tesis (para no repetir el mismo punto dos veces con distinta evidencia) y se fuerza diversidad de familias — así el resultado final no son 5 variaciones del mismo problema, sino un panorama de ángulos distintos.
+El resultado final no son 5 variaciones del mismo problema, sino un panorama de ángulos distintos.
 
 ## Por qué el mismo motor sirve para 3 instancias distintas
 
