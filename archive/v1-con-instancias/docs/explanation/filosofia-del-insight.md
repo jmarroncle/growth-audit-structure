@@ -36,10 +36,8 @@ La diferencia no es de redacción — es que la versión buena no podría habers
 
 ## Por qué no se ofrece una solución directa
 
-El output es deliberadamente "una primera oportunidad para salir del típico cold reaching", no una propuesta cerrada. Un insight que ya resuelve el problema no deja nada para conversar después — sea que Cristopher lo use para abrir una conversación en frío, para profundizar en una llamada, o lo entregue completo a un lead. Cerrar la puerta con una solución completa (sobre todo una que nadie pidió) compite directamente contra el objetivo real de la auditoría: abrir una conversación, no ganarla de una.
+El output es deliberadamente "una primera oportunidad para salir del típico cold reaching", no una propuesta cerrada. Un insight que ya resuelve el problema no deja nada para conversar en una call — y en cold reach, cerrar la puerta con una solución completa (sobre todo una que el destinatario no pidió) compite directamente contra el objetivo real, que es abrir una conversación.
 
 ## Por qué el objetivo cambia el titular, no el contenido
 
-El mismo hallazgo se dice distinto según el objetivo de la empresa auditada: un sitio sin proof, para una empresa que levanta funding, es "no parecés fundable"; para una que quiere clientes, es "no generás confianza para convertir". El objetivo no inventa insights nuevos — decide cuáles suben al top del ranking y con qué encabezado se presentan.
-
-El objetivo es un dato de entrada que se indica al correr la auditoría (junto con la URL) — no algo que el sistema tenga que adivinar. Quien pide la auditoría (Cristopher, hoy) lo declara a mano según lo que sepa de la empresa que está mirando.
+El mismo hallazgo se dice distinto según el objetivo de quien lo recibe: un sitio sin proof, para una empresa que levanta funding, es "no parecés fundable"; para una que quiere clientes, es "no generás confianza para convertir". El objetivo no inventa insights nuevos — decide cuáles suben al top del ranking y con qué encabezado se presentan. Esto es lo que hace que el mismo motor sirva tanto para inbound (donde el objetivo lo declara el propio prospecto en el onboarding) como para cold reach (donde el objetivo se infiere del contexto de la empresa objetivo).

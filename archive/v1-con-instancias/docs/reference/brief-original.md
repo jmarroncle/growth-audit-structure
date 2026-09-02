@@ -1,8 +1,6 @@
 # Brief original — Audit Structure
 
-> Transcripción del requerimiento tal como lo pasó Cristopher Echevarría en Notion. Es el documento fuente; el resto de la documentación en este repo es la interpretación y el plan de implementación sobre esta base.
-
-> **Nota de alcance (MVP):** la sección "Instancias" de más abajo describe Cold Reach, Follow-up post-call e Inbound como si fueran 3 salidas que el sistema tiene que generar. Se corrigió esa lectura: **el producto genera una sola auditoría completa** — lo que Cristopher hace después con ella (usarla en frío, profundizarla en una llamada, entregarla a un lead) es su propio proceso comercial, no software. Ver [`archive/v1-con-instancias/NOTA-DE-ARCHIVO.md`](../../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el detalle de este cambio de alcance. El resto del brief (composición, anatomía del insight, tipos, niveles de evidencia) sigue vigente tal cual.
+> Transcripción del requerimiento tal como lo pasó Cristopher Echevarría en Notion. Este es el documento fuente; el resto de la documentación en este repo (`architecture.md`, `insight-schema.md`, `roadmap.md`) es la interpretación y el plan de implementación sobre esta base.
 
 ## Qué es
 
@@ -59,15 +57,11 @@ Nuestra oportunidad: identificar [posible accionar].
 
 El mismo hallazgo cambia de titular según el objetivo de la empresa. Un sitio sin proof, para el que levanta funding es "no parecés fundable", para el que quiere clientes es "no generás confianza para convertir". El objetivo no crea insights nuevos, decide cuáles suben al top y con qué framing. En inbound lo da el onboarding. En cold reach lo infiere el agente del contexto (una empresa que levantó ronda y contrata un growth lead tiene objetivo de escalar pipeline).
 
-> *En el MVP, el objetivo es simplemente un dato que se carga a mano junto con la URL — ver [`explanation/filosofia-del-insight.md`](../explanation/filosofia-del-insight.md).*
-
 ## Organización
 
 El agente genera muchos candidatos. Una función de selección los rankea por fuerza de la evidencia, relevancia al objetivo, distancia de lo genérico y accionabilidad vía sitio. En cold reach se suma un criterio, riesgo de insulto, porque en frío un insight cierto pero humillante cierra la puerta. Después se colapsan los hallazgos relacionados en una sola tesis stackeada, y se fuerza que los 5 toquen familias distintas.
 
 ## Instancias
-
-> *Ver la nota de alcance al principio de este documento — esta sección describe el proceso comercial de Cristopher, no una función del producto.*
 
 - **Cold reach:** objetivo inferido. Se muestra un solo hook, el insight más verificable, interesante y menos insultante, para que la charla arranque de ahí. Exige al menos una evidencia medida o recuperada.
 - **Follow up post-call:** objetivo locked de la conversación. Más profundo, referenciado a lo que se habló. Es un mini pre-SOW.
