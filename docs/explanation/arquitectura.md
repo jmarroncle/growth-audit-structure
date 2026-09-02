@@ -90,7 +90,7 @@ flowchart TD
 
 ## Dónde vive la interfaz (el frontend)
 
-Todo lo anterior es lógica — no tiene pantallas. La landing, el formulario y la pantalla de resultados (ver el [mockup navegable](../../README.md#%EF%B8%8F-ui-del-producto-mockup)) son un **frontend estático liviano**, hosteado aparte de n8n en **Vercel Hobby** (gratis — ver [`reference/stack.md`](../reference/stack.md)) porque construir una interfaz con varias pantallas y estado visual como texto HTML dentro de un nodo de n8n es incómodo de mantener y versionar.
+Todo lo anterior es lógica — no tiene pantallas. La landing, el formulario y la pantalla de resultados (ver el mockup navegable en la sección "🖼️ UI del producto" del [README](../../README.md)) son un **frontend estático liviano**, hosteado aparte de n8n en **Vercel Hobby** (gratis — ver [`reference/stack.md`](../reference/stack.md)) porque construir una interfaz con varias pantallas y estado visual como texto HTML dentro de un nodo de n8n es incómodo de mantener y versionar.
 
 El frontend nunca tiene lógica propia — es una cara visible sobre n8n:
 
@@ -120,4 +120,4 @@ El resultado final no son 5 variaciones del mismo problema, sino un panorama de 
 
 ## Por qué el mismo motor sirve para 3 instancias distintas
 
-Cold reach, follow-up post-call e inbound comparten exactamente el mismo pipeline hasta el paso de selección — lo único que cambia es qué objetivo alimenta la generación de candidatos y cuánto del stack seleccionado se muestra. Esto es deliberado: separar "cómo se generan los insights" de "cómo se presentan" evita mantener tres lógicas de negocio distintas y permite que una mejora en la calidad del motor (por ejemplo, mejor detección de evidencia) beneficie a las 3 instancias a la vez. Ver [`reference/instancias.md`](../reference/instancias.md) para el detalle de cada una.
+Cold reach, follow-up post-call e inbound comparten exactamente el mismo pipeline hasta el paso de selección — lo único que cambia es qué objetivo alimenta la generación de candidatos y cuánto del stack seleccionado se muestra. En inbound ese objetivo lo declara el propio prospecto en el formulario; en cold reach lo resuelve el nodo `OBJ` del diagrama de arriba, el agente que lo infiere del contexto (ver [`how-to/inferir-el-objetivo-en-cold-reach.md`](../how-to/inferir-el-objetivo-en-cold-reach.md) para el proceso paso a paso). Esto es deliberado: separar "cómo se generan los insights" de "cómo se presentan" evita mantener tres lógicas de negocio distintas y permite que una mejora en la calidad del motor (por ejemplo, mejor detección de evidencia) beneficie a las 3 instancias a la vez. Ver [`reference/instancias.md`](../reference/instancias.md) para el detalle de cada una.
