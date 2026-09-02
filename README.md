@@ -51,6 +51,7 @@ La documentación de producto está organizada con **Diátaxis** — un framewor
   - [`docs/reference/insight-object.md`](docs/reference/insight-object.md) — los campos del objeto insight
   - [`docs/reference/tipos-de-insight.md`](docs/reference/tipos-de-insight.md) — las 6 familias
   - [`docs/reference/niveles-de-evidencia.md`](docs/reference/niveles-de-evidencia.md) — medido / recuperado / inferido
+  - [`docs/reference/capa-de-datos.md`](docs/reference/capa-de-datos.md) — qué devuelve cada herramienta y a qué insight llega
   - [`docs/reference/instancias.md`](docs/reference/instancias.md) — tabla comparativa de las 3 instancias
   - [`docs/reference/stack.md`](docs/reference/stack.md) — herramientas evaluadas por función (cuentas y suscripciones a cargo del cliente)
 - 💡 **Explicación** (el porqué de las decisiones de diseño)
