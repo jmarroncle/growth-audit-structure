@@ -58,4 +58,4 @@ Compará este resultado contra el ejemplo genérico ("mejorá el H1") de [`expla
 
 ## Siguiente paso
 
-Este mismo proceso, hecho a mano acá, es lo que la Fase 1 del proyecto (ver [`roadmap.md`](../roadmap.md)) automatiza — primero corriendo contra sitios reales para calibrar que la calidad se mantenga sin intervención manual.
+Este mismo proceso, hecho a mano acá, es lo que el motor del proyecto (ver [`roadmap.md`](../roadmap.md)) automatiza — primero corriendo contra sitios reales para calibrar que la calidad se mantenga sin intervención manual, y recién después conectado al formulario web.

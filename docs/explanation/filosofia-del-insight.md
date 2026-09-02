@@ -42,4 +42,4 @@ El output es deliberadamente "una primera oportunidad para salir del típico col
 
 El mismo hallazgo se dice distinto según el objetivo de la empresa auditada: un sitio sin proof, para una empresa que levanta funding, es "no parecés fundable"; para una que quiere clientes, es "no generás confianza para convertir". El objetivo no inventa insights nuevos — decide cuáles suben al top del ranking y con qué encabezado se presentan.
 
-El objetivo es un dato de entrada que se indica al correr la auditoría (junto con la URL) — no algo que el sistema tenga que adivinar. Quien pide la auditoría (Cristopher, hoy) lo declara a mano según lo que sepa de la empresa que está mirando.
+El objetivo es un dato de entrada que se declara junto con la URL, en el propio formulario — no algo que el sistema tenga que adivinar. Es el visitante quien lo indica al pedir su auditoría.

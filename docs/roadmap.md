@@ -1,16 +1,18 @@
 # Plan de construcción
 
-## MVP — Motor de insights (la única fase)
+## MVP — Motor + entrega web self-serve
 
-Todo el alcance del MVP es esto: la capa de datos (los 3 niveles de confiabilidad — ver [`reference/capa-de-datos.md`](reference/capa-de-datos.md)), el agente generador de candidatos en las 6 familias, y el agente selector junto con el nodo de código que colapsa hallazgos y fuerza diversidad (ver [`reference/agentes.md`](reference/agentes.md)). Corre en n8n con un trigger manual — Cristopher carga la URL y el objetivo a mano.
+El alcance del MVP tiene dos piezas que se construyen en paralelo (ver [`explanation/arquitectura.md`](explanation/arquitectura.md) para el detalle de cómo se conectan):
 
-Se valida corriéndolo contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`reference/insight-object.md`](reference/insight-object.md) y [`explanation/filosofia-del-insight.md`](explanation/filosofia-del-insight.md)) sale afilado en la práctica, no solo en la teoría.
+- **El motor de insights** — la capa de datos (los 3 niveles de confiabilidad, ver [`reference/capa-de-datos.md`](reference/capa-de-datos.md)), el agente generador de candidatos en las 6 familias, y el agente selector junto con el nodo de código que colapsa hallazgos y fuerza diversidad (ver [`reference/agentes.md`](reference/agentes.md)).
+- **El frontend estático** (landing, formulario, pantalla de resultados e insight expandido — ver el mockup navegable en la sección "🖼️ UI del producto" del [README](../README.md)), hosteado en Vercel Hobby. Sin lógica propia: postea al webhook de n8n al enviar el formulario, y consulta otro webhook por token para traer el resultado.
 
-**Criterio de validación:** ¿el insight que arma el motor está a la altura del ejemplo bueno del schema, o cae en genérico?
+El motor se valida primero, corriéndolo contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`reference/insight-object.md`](reference/insight-object.md) y [`explanation/filosofia-del-insight.md`](explanation/filosofia-del-insight.md)) sale afilado en la práctica, no solo en la teoría — recién con eso confirmado tiene sentido conectar el frontend, porque es la parte más cara de construir y la que menos tolera un insight flojo.
 
-**Entregable:** una auditoría completa (4-5 insights con evidencia) por cada sitio que Cristopher cargue. Nada de mensajes de cold reach, nada de follow-ups automáticos, nada de web — eso es su propio proceso comercial, no software (ver la [nota de archivo](../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md)).
+**Criterio de validación del motor:** ¿el insight que arma el motor está a la altura del ejemplo bueno del schema, o cae en genérico?
 
-## Fuera de alcance (por ahora)
+**Entregable:** un visitante entra a la web, pide su auditoría, y el sistema se la manda por mail solo — sin que Cristopher intervenga en la generación. Nada de mensajes de cold reach ni de follow-ups automáticos: eso es el proceso comercial de Cristopher con el resultado, no software (ver la [nota de archivo](../archive/v1-con-instancias/NOTA-DE-ARCHIVO.md)).
 
-- **Self-serve web para inbound** — un formulario público donde alguien pide su propia auditoría. La primera versión de este repo lo diseñó completo, incluyendo [un mockup de UI](../archive/v1-con-instancias/README.md). Quedó archivado, no descartado: si después de validar el motor Cristopher quiere retomarlo, es la referencia de partida.
-- **Cualquier automatización de cold reach o follow-up** — no es un feature pendiente, es explícitamente trabajo manual de Cristopher con el resultado de la auditoría.
+## Fuera de alcance
+
+**Cualquier automatización de cold reach o follow-up post-call** — no es un feature pendiente ni una fase futura. Es explícitamente trabajo manual de Cristopher con el resultado de una auditoría ya generada.

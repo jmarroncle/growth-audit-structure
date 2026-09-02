@@ -4,7 +4,7 @@ Los 2 nodos de IA del diagrama en [`explanation/arquitectura.md`](../explanation
 
 | Agente (nodo) | Qué decide | Inputs | Output |
 |---|---|---|---|
-| **`GEN`** — Generador de candidatos | Qué insights candidatos generar, distribuidos en las 6 familias ([`tipos-de-insight.md`](tipos-de-insight.md)) | Los datos de las 6 herramientas de la capa de datos ([`capa-de-datos.md`](capa-de-datos.md)) + el objetivo (indicado a mano al correr la auditoría) | Una lista de candidatos — más de los que se van a mostrar al final |
+| **`GEN`** — Generador de candidatos | Qué insights candidatos generar, distribuidos en las 6 familias ([`tipos-de-insight.md`](tipos-de-insight.md)) | Los datos de las 6 herramientas de la capa de datos ([`capa-de-datos.md`](capa-de-datos.md)) + el objetivo (declarado por el visitante en el formulario) | Una lista de candidatos — más de los que se van a mostrar al final |
 | **`SEL`** — Selector | Cuáles candidatos pasan el corte y en qué orden, aplicando el checklist de [`how-to/evaluar-la-calidad-de-un-insight.md`](../how-to/evaluar-la-calidad-de-un-insight.md): fuerza de evidencia, relevancia al objetivo, distancia de lo genérico, accionabilidad, y riesgo de insulto | Los candidatos que entregó `GEN` | Los candidatos rankeados, antes de pasar por el nodo de código que colapsa y fuerza diversidad |
 
 ## Por qué son 2 llamados y no uno solo

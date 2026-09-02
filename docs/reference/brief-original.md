@@ -59,7 +59,7 @@ Nuestra oportunidad: identificar [posible accionar].
 
 El mismo hallazgo cambia de titular según el objetivo de la empresa. Un sitio sin proof, para el que levanta funding es "no parecés fundable", para el que quiere clientes es "no generás confianza para convertir". El objetivo no crea insights nuevos, decide cuáles suben al top y con qué framing. En inbound lo da el onboarding. En cold reach lo infiere el agente del contexto (una empresa que levantó ronda y contrata un growth lead tiene objetivo de escalar pipeline).
 
-> *En el MVP, el objetivo es simplemente un dato que se carga a mano junto con la URL — ver [`explanation/filosofia-del-insight.md`](../explanation/filosofia-del-insight.md).*
+> *En el MVP, el objetivo es un dato que el visitante declara en el formulario junto con la URL — ver [`explanation/filosofia-del-insight.md`](../explanation/filosofia-del-insight.md).*
 
 ## Organización
 

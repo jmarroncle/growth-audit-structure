@@ -10,19 +10,25 @@ No es un checklist de sitio, como lo ejecutan la mayoría de las agencias. Es un
 
 ## Qué NO hace este MVP (a propósito)
 
-La primera versión de este repo intentaba construir tres "salidas" de software distintas — un mensaje de cold reach, un follow-up post-call, y un formulario self-serve en la web. Se corrigió el alcance: **eso no es trabajo del sistema.**
+La primera versión de este repo intentaba construir tres "salidas" de software distintas — un mensaje de cold reach, un follow-up post-call, y la entrega inbound. Se corrigió el alcance parcialmente: **cold reach y follow-up no son trabajo del sistema** — son Cristopher usando a mano el resultado de una auditoría ya generada, con la misma auditoría como materia prima. La entrega web self-serve sí sigue siendo parte del producto, porque ahí sí hace falta automatizar algo real: nadie de Cristopher tiene que estar mirando cuando un visitante pide su auditoría.
 
-El producto genera una auditoría. Lo que Cristopher hace después con ella — mandarla en frío, profundizarla en una llamada, entregarla a un lead — es su propio proceso comercial, con la misma auditoría como materia prima. No hay que construir software para eso.
-
-Esa primera versión (con el pipeline de 3 instancias, el frontend web y su mockup de UI) quedó guardada en [`archive/v1-con-instancias/`](archive/v1-con-instancias/) como referencia — ver [la nota de archivo](archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el porqué del cambio.
+Esa primera versión completa (con el switch de 3 instancias) quedó guardada en [`archive/v1-con-instancias/`](archive/v1-con-instancias/) como referencia — ver [la nota de archivo](archive/v1-con-instancias/NOTA-DE-ARCHIVO.md) para el detalle del cambio de alcance.
 
 ## Cómo está armado
 
 Ver [`docs/explanation/arquitectura.md`](docs/explanation/arquitectura.md) para el diagrama completo. En resumen:
 
 ```
-URL + objetivo (a mano) → Capa de datos (6 herramientas, 3 niveles de confiabilidad) → Agente generador (6 familias) → Agente selector → Nodo de código (colapsa + diversidad) → La auditoría completa
+Formulario web → Capa de datos (6 herramientas, 3 niveles de confiabilidad) → Agente generador (6 familias) → Agente selector → Nodo de código (colapsa + diversidad) → La auditoría completa, entregada por mail
 ```
+
+## 🖼️ UI del producto (mockup)
+
+**[Ver el mockup navegable →](https://claude.ai/code/artifact/c7bcb0a8-c527-4244-9dc2-d4e8ac019394)**
+
+Las 5 pantallas de la entrega web self-serve — landing, formulario, procesando, resultados e insight expandido — con datos de ejemplo (la misma auditoría de `nortia.io` del tutorial).
+
+> Es un link privado (Claude Artifact) — compartilo desde el menú de share de esa página si Cristopher necesita verlo sin tu cuenta.
 
 ## 💰 Costo estimado de operación
 
