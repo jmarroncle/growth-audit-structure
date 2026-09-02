@@ -4,7 +4,7 @@ El proyecto se valida de adentro hacia afuera: primero el motor de insights (lo 
 
 ## Fase 1 — Motor de insights
 
-El core del sistema: capa de datos (los 3 niveles de confiabilidad), generación de candidatos en las 6 familias, función de selección/ranking. Se corre manualmente contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`reference/insight-object.md`](reference/insight-object.md) y [`explanation/filosofia-del-insight.md`](explanation/filosofia-del-insight.md)) sale afilado en la práctica, no solo en la teoría.
+El core del sistema: la capa de datos (los 3 niveles de confiabilidad — ver [`reference/capa-de-datos.md`](reference/capa-de-datos.md)), el agente generador de candidatos en las 6 familias, y el agente selector junto con el nodo de código que colapsa hallazgos y fuerza diversidad (ver [`reference/agentes.md`](reference/agentes.md)). Se corre manualmente contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`reference/insight-object.md`](reference/insight-object.md) y [`explanation/filosofia-del-insight.md`](explanation/filosofia-del-insight.md)) sale afilado en la práctica, no solo en la teoría.
 
 **Criterio de validación de esta fase:** ¿el insight que arma el motor está a la altura del ejemplo bueno del schema, o cae en genérico?
 
@@ -12,7 +12,7 @@ Sin frontend todavía — se corre a mano contra una URL + objetivo.
 
 ## Fase 2 — Instancia Cold Reach
 
-Lógica de inferencia de objetivo desde contexto (ej: empresa que levantó ronda y contrata un growth lead → objetivo de escalar pipeline) + renderer de 1 solo hook.
+El agente `OBJ` que infiere el objetivo desde contexto (ej: empresa que levantó ronda y contrata un growth lead → objetivo de escalar pipeline — ver [`reference/agentes.md`](reference/agentes.md)) + renderer de 1 solo hook.
 
 ## Fase 3 — Instancia Follow-up post-call
 

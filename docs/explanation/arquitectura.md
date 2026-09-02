@@ -81,7 +81,7 @@ flowchart TD
 
 | Color | Qué significa |
 |---|---|
-| 🟩 Verde azulado | **Agente de IA** (Claude) razonando — infiere el objetivo, genera candidatos, o rankea por criterio subjetivo |
+| 🟩 Verde azulado | **Agente de IA** (Claude) razonando — infiere el objetivo, genera candidatos, o rankea por criterio subjetivo. Detalle de cada uno en [`reference/agentes.md`](../reference/agentes.md) |
 | 🟦 Azul | **Llamada a una herramienta externa** — HTTP Request a una API (PageSpeed, Perplexity, Firecrawl, SerpAPI/Exa, DataForSEO) |
 | ⬜ Gris | **Nodo de código determinístico** — sin IA: parsear HTML, colapsar hallazgos, forzar diversidad |
 | 🟪 Violeta | El frontend estático, fuera de n8n |
