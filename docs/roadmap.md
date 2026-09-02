@@ -4,7 +4,7 @@ El proyecto se valida de adentro hacia afuera: primero el motor de insights (lo 
 
 ## Fase 1 — Motor de insights
 
-El core del sistema: capa de datos (los 3 niveles de confiabilidad), generación de candidatos en las 6 familias, función de selección/ranking. Se corre manualmente contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`insight-schema.md`](insight-schema.md)) sale afilado en la práctica, no solo en la teoría.
+El core del sistema: capa de datos (los 3 niveles de confiabilidad), generación de candidatos en las 6 familias, función de selección/ranking. Se corre manualmente contra 8-10 sitios reales hasta calibrar que el "molde" del insight (ver [`reference/insight-object.md`](reference/insight-object.md) y [`explanation/filosofia-del-insight.md`](explanation/filosofia-del-insight.md)) sale afilado en la práctica, no solo en la teoría.
 
 **Criterio de validación de esta fase:** ¿el insight que arma el motor está a la altura del ejemplo bueno del schema, o cae en genérico?
 

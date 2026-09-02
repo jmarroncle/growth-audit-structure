@@ -16,7 +16,7 @@ No es un checklist de sitio, como lo ejecutan la mayoría de las agencias. Es un
 
 ## Cómo está armado
 
-Ver [`docs/architecture.md`](docs/architecture.md) para el diagrama completo. En resumen:
+Ver [`docs/explanation/arquitectura.md`](docs/explanation/arquitectura.md) para el diagrama completo. En resumen:
 
 ```
 URL + objetivo → Capa de datos (3 niveles de confiabilidad) → Generación de candidatos (6 familias) → Selección/Ranking → Render según instancia
@@ -24,10 +24,27 @@ URL + objetivo → Capa de datos (3 niveles de confiabilidad) → Generación de
 
 ## Documentación
 
-- [`docs/brief-original.md`](docs/brief-original.md) — el requerimiento original de Cristopher, transcripto tal cual
-- [`docs/architecture.md`](docs/architecture.md) — arquitectura del motor y diagrama de flujo
-- [`docs/insight-schema.md`](docs/insight-schema.md) — el objeto "insight": campos, niveles de evidencia, ejemplo genérico vs. bueno
-- [`docs/stack.md`](docs/stack.md) — herramientas evaluadas por función (cuentas y suscripciones a cargo del cliente)
+La documentación de producto está organizada con **Diátaxis** — un framework que separa los documentos en 4 tipos según lo que el lector necesita en ese momento: aprender haciendo, resolver una tarea puntual, consultar un dato exacto, o entender el porqué de una decisión.
+
+- 📚 **Tutoriales** (aprender haciendo)
+  - [`docs/tutorials/primer-audit-manual.md`](docs/tutorials/primer-audit-manual.md) — arma un insight completo a mano, paso a paso, con un ejemplo ficticio
+- 🛠️ **Guías prácticas** (cómo resolver una tarea concreta)
+  - [`docs/how-to/evaluar-la-calidad-de-un-insight.md`](docs/how-to/evaluar-la-calidad-de-un-insight.md)
+  - [`docs/how-to/inferir-el-objetivo-en-cold-reach.md`](docs/how-to/inferir-el-objetivo-en-cold-reach.md)
+  - [`docs/how-to/elegir-que-mostrar-segun-la-instancia.md`](docs/how-to/elegir-que-mostrar-segun-la-instancia.md)
+- 📖 **Referencia** (consulta rápida de datos exactos)
+  - [`docs/reference/brief-original.md`](docs/reference/brief-original.md) — el requerimiento original de Cristopher, transcripto tal cual
+  - [`docs/reference/insight-object.md`](docs/reference/insight-object.md) — los campos del objeto insight
+  - [`docs/reference/tipos-de-insight.md`](docs/reference/tipos-de-insight.md) — las 6 familias
+  - [`docs/reference/niveles-de-evidencia.md`](docs/reference/niveles-de-evidencia.md) — medido / recuperado / inferido
+  - [`docs/reference/instancias.md`](docs/reference/instancias.md) — tabla comparativa de las 3 instancias
+  - [`docs/reference/stack.md`](docs/reference/stack.md) — herramientas evaluadas por función (cuentas y suscripciones a cargo del cliente)
+- 💡 **Explicación** (el porqué de las decisiones de diseño)
+  - [`docs/explanation/arquitectura.md`](docs/explanation/arquitectura.md)
+  - [`docs/explanation/filosofia-del-insight.md`](docs/explanation/filosofia-del-insight.md) — por qué esto no es un checklist
+
+Más el plan de construcción del proyecto — no es documentación de producto, es planificación:
+
 - [`docs/roadmap.md`](docs/roadmap.md) — fases de construcción y criterios de validación
 
 ## Estado del proyecto
