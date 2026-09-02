@@ -11,8 +11,10 @@ Todas las cuentas y suscripciones corren a cargo de Cristopher. Este documento r
 | Test de AEO (Answer Engine Optimization) | API de Perplexity (Sonar), armado a medida | Otterly.ai |
 | Búsqueda web con fuente y fecha | SerpAPI (plan gratis) / Exa (pago por uso) | SerpAPI de pago |
 | Lectura de sitio propio y de competidores | Firecrawl | ScrapingBee |
-| Hosting (Instancia inbound / web) | Vercel Hobby — gratis | Railway |
+| Orquestación del pipeline completo | n8n (ya en uso por Cristopher) | — |
 | Captura de mail + formulario | Tally — gratis | Kit (ex ConvertKit) |
+
+> **Nota sobre hosting:** como todo el pipeline se orquesta en n8n (ver [`explanation/arquitectura.md`](../explanation/arquitectura.md)), no hace falta un backend separado ni su hosting (Vercel/Railway quedan afuera del stack). n8n recibe los triggers, llama a cada API vía nodos HTTP Request, y entrega el resultado — es la única pieza de infraestructura nueva a mantener.
 
 ## Nota operativa
 

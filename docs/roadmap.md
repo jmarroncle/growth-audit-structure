@@ -20,7 +20,7 @@ Captura del objetivo "locked" de la conversación + renderer más profundo, refe
 
 ## Fase 4 — Instancia Inbound + Web self-serve
 
-Formulario de onboarding que captura el objetivo, gateado con mail · landing donde el prospecto ingresa su URL · backend que conecta formulario → motor → output → envío por mail · deploy y hosting · diseño del output final.
+Formulario de onboarding que captura el objetivo, gateado con mail · landing donde el prospecto ingresa su URL · workflow de n8n que conecta el webhook del formulario → motor → output → envío por mail y registro en Sheets/CRM (ver [`explanation/arquitectura.md`](explanation/arquitectura.md)) · diseño del output final.
 
 Esta es la fase más cara de construir y la que menos tolera un insight flojo — por eso va después de validar el motor, no antes.
 

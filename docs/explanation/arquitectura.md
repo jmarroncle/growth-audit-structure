@@ -2,38 +2,52 @@
 
 ## El flujo completo
 
+Todo el pipeline se orquesta y vive dentro de **n8n** (la herramienta de automatización con la que Cristopher va a operar el proyecto) — no hay un backend separado. n8n recibe el trigger, llama a cada fuente de datos con nodos HTTP Request, llama al modelo para generar y seleccionar los insights, y entrega el resultado por el canal que corresponda a cada instancia.
+
 ```mermaid
 flowchart TD
-    A[Input: URL + objetivo] --> B1
+    subgraph N8N [n8n - orquestación completa del pipeline]
+        direction TB
 
-    subgraph CapaDatos [Capa de datos - 3 niveles de confiabilidad]
-        B1[Barato y confiable<br/>Performance, stack tecnológico,<br/>test de AEO, análisis de texto/diseño]
-        B2[Recuperable<br/>Funding, headcount, posts de founders<br/>con fuente y fecha]
-        B3[Difícil / riesgoso<br/>Rankings SEO reales<br/>usar con cautela]
+        subgraph Triggers [Triggers de entrada]
+            T1[Webhook: formulario inbound]
+            T2[Trigger manual / cron: cold reach]
+            T3[Webhook: CRM - llamada finalizada]
+        end
+
+        T1 --> IN[URL + objetivo]
+        T2 --> IN
+        T3 --> IN
+
+        IN --> B1
+
+        subgraph CapaDatos [Nodos HTTP Request - Capa de datos]
+            B1[Barato y confiable<br/>PageSpeed, stack tecnológico,<br/>test de AEO, análisis de texto/diseño]
+            B2[Recuperable<br/>Búsqueda web con fuente y fecha<br/>funding, headcount, posts de founders]
+            B3[Difícil / riesgoso<br/>SEO real vía DataForSEO/Ahrefs]
+        end
+
+        B1 --> C
+        B2 --> C
+        B3 --> C
+
+        C[Nodo AI: genera candidatos<br/>en las 6 familias] --> D["Nodo AI/Code: función de selección<br/>(evidencia, relevancia, distancia de lo<br/>genérico, accionabilidad, riesgo de insulto)"]
+        D --> D1[Colapsa hallazgos relacionados<br/>+ fuerza diversidad de familias]
+
+        D1 --> E{Nodo Switch: instancia}
+        E --> E1[Cold Reach<br/>1 solo hook]
+        E --> E2[Follow-up post-call<br/>mini pre-SOW]
+        E --> E3[Inbound self-serve<br/>4-5 insights completos]
     end
 
-    B1 --> C
-    B2 --> C
-    B3 --> C
-
-    subgraph Candidatos [Generación de candidatos - 6 familias]
-        C1[Posicionamiento y narrativa]
-        C2[Demanda y visibilidad en AI]
-        C3[Funnel y conversión]
-        C4[Capacidad de growth]
-        C5[Credibilidad]
-        C6[Cobertura de comité de compra]
-    end
-
-    C[Candidatos generados] --> D[Función de selección]
-    D --> D1["Rankea por: fuerza de evidencia,<br/>relevancia al objetivo,<br/>distancia de lo genérico,<br/>accionabilidad,<br/>riesgo de insulto en frío"]
-    D1 --> D2[Colapsa hallazgos relacionados<br/>+ fuerza diversidad de familias]
-
-    D2 --> E{Instancia}
-    E --> E1[Cold Reach<br/>1 solo hook]
-    E --> E2[Follow-up post-call<br/>mini pre-SOW]
-    E --> E3[Inbound self-serve<br/>4-5 insights completos]
+    E1 --> O1[Nodo salida:<br/>mensaje para SDR/LinkedIn]
+    E2 --> O2[Nodo salida:<br/>doc o email de follow-up]
+    E3 --> O3[Nodo salida:<br/>email al prospecto<br/>+ registro en Sheets/CRM]
 ```
+
+## Por qué n8n como capa de orquestación, y no un backend a medida
+
+El plan original contemplaba un backend propio (hosteado en algo como Vercel o Railway) para conectar el formulario con el motor. Como Cristopher va a operar todo el proyecto sobre n8n, ese rol lo cumple n8n directamente: sus triggers (webhook, cron, o disparado desde el CRM) reemplazan al backend custom, sus nodos HTTP Request llaman a cada fuente de datos de la capa de evidencia, y sus nodos de IA generan y seleccionan los insights. Esto simplifica el proyecto — una sola herramienta para operar, monitorear y debuggear el pipeline completo, en vez de un backend separado que además de mantenerse necesitaría su propio hosting.
 
 ## Por qué 3 niveles de datos y no uno solo
 
