@@ -14,6 +14,12 @@ No es un checklist de sitio, como lo ejecutan la mayoría de las agencias. Es un
 2. **Follow-up post-call** — versión más profunda, referenciada a lo hablado en la llamada. Funciona como un mini pre-SOW (statement of work).
 3. **Inbound self-serve** — el audit completo (4-5 insights), gateado detrás de un mail. El onboarding captura el objetivo; tiene que generar deseo de agendar la call.
 
+## 💰 Costo estimado de operación
+
+**≈ USD 61–118 por mes**, a cargo de Cristopher (cuentas y suscripciones propias — ver [`docs/reference/stack.md`](docs/reference/stack.md) para el detalle por herramienta).
+
+Es un costo variable, no una suscripción fija: crece o baja según cuántos audits se corran por mes. La estimación asume un volumen inicial bajo-moderado. Este número es aparte del fee de implementación del proyecto — es lo que cuesta *operar* la solución una vez construida, mes a mes.
+
 ## Cómo está armado
 
 Ver [`docs/explanation/arquitectura.md`](docs/explanation/arquitectura.md) para el diagrama completo. En resumen:
